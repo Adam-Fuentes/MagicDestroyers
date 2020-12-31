@@ -1,4 +1,5 @@
-﻿using MagicDestroyers.Equipment.Armors.Heavy;
+﻿using MagicDestroyers.Enums;
+using MagicDestroyers.Equipment.Armors.Heavy;
 using MagicDestroyers.Equipment.Weapons.Blunt;
 using System;
 using System.Collections.Generic;
@@ -10,15 +11,37 @@ namespace MagicDestroyers.Characters.Melee
 {
     public class Knight
     {
+        private const Faction DEFAULT_FACTION = Faction.Melee;
+        private const int DEFAULT_LEVEL = 1;
+        private const int DEFAULT_HEALTH_POINTS = 120;
+        private const int DEFAULT_ABILITY_POINTS = 100;
+        private const string DEFAULT_NAME = "Uther";
+
+        private readonly Chainlink DEFAULT_BODY_ARMOR = new Chainlink();
+        private readonly Hammer DEFAULT_WEAPON = new Hammer();
+
+        private Faction faction;
+
         private int abilityPoints;
         private int healthPoints;
         private int level;
 
-        private string faction;
         private string name;
 
         private Chainlink bodyArmor;
         private Hammer weapon;
+
+        public Faction Faction
+        {
+            get
+            {
+                return this.faction;
+            }
+            set
+            {
+                this.faction = value;
+            }
+        }
 
         public int AbilityPoints
         {
@@ -93,24 +116,6 @@ namespace MagicDestroyers.Characters.Melee
                 }
             }
         }
-        public string Faction
-        {
-            get
-            {
-                return this.faction;
-            }
-            set
-            {
-                if (value == "Melee" || value == "Spellcaster")
-                {
-                    this.faction = value;
-                }
-                else
-                {
-                    throw new ArgumentException(string.Empty, "The faction should be either Melee or Spellcaster");
-                }
-            }
-        }
 
         public Chainlink BodyArmor
         {
@@ -136,8 +141,24 @@ namespace MagicDestroyers.Characters.Melee
         }
 
         public Knight()
+            : this(DEFAULT_NAME, DEFAULT_LEVEL)
         {
+        }
 
+        public Knight(string name, int level)
+            : this(name, level, DEFAULT_HEALTH_POINTS)
+        {
+        }
+
+        public Knight(string name, int level, int healthPoints)
+        {
+            this.Name = name;
+            this.Level = level;
+            this.HealthPoints = healthPoints;
+            this.AbilityPoints = DEFAULT_ABILITY_POINTS;
+            this.Faction = DEFAULT_FACTION;
+            this.BodyArmor = DEFAULT_BODY_ARMOR;
+            this.Weapon = DEFAULT_WEAPON;
         }
 
         public void HolyBlow()

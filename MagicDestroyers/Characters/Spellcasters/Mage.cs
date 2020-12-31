@@ -1,4 +1,5 @@
-﻿using MagicDestroyers.Equipment.Armors.Light;
+﻿using MagicDestroyers.Enums;
+using MagicDestroyers.Equipment.Armors.Light;
 using MagicDestroyers.Equipment.Weapons.Blunt;
 using System;
 
@@ -6,15 +7,37 @@ namespace MagicDestroyers.Characters.Spellcasters
 {
     public class Mage
     {
+        private const Faction DEFAULT_FACTION = Faction.Spellcaster;
+        private const int DEFAULT_LEVEL = 1;
+        private const int DEFAULT_HEALTH_POINTS = 120;
+        private const int DEFAULT_ABILITY_POINTS = 100;
+        private const string DEFAULT_NAME = "Merlin";
+
+        private readonly ClothRobe DEFAULT_BODY_ARMOR = new ClothRobe();
+        private readonly Staff DEFAULT_WEAPON = new Staff();
+
+        private Faction faction;
+
         private int abilityPoints;
         private int healthPoints;
         private int level;
 
-        private string faction;
         private string name;
 
         private ClothRobe bodyArmor;
         private Staff weapon;
+
+        public Faction Faction
+        {
+            get
+            {
+                return faction;
+            }
+            set
+            {
+                this.faction = value;
+            }
+        }
 
         public int AbilityPoints
         {
@@ -89,24 +112,6 @@ namespace MagicDestroyers.Characters.Spellcasters
                 }
             }
         }
-        public string Faction
-        {
-            get
-            {
-                return faction;
-            }
-            set
-            {
-                if (value == "Melee" || value == "Spellcaster")
-                {
-                    faction = value;
-                }
-                else
-                {
-                    throw new ArgumentException(string.Empty, "The faction should be either Melee or Spellcaster");
-                }
-            }
-        }
 
         public ClothRobe BodyArmor
         {
@@ -130,10 +135,26 @@ namespace MagicDestroyers.Characters.Spellcasters
                 weapon = value;
             }
         }
-        
-        public Mage()
-        {
 
+        public Mage()
+            : this(DEFAULT_NAME, DEFAULT_LEVEL)
+        {
+        }
+
+        public Mage(string name, int level)
+            : this(name, level, DEFAULT_HEALTH_POINTS)
+        {
+        }
+
+        public Mage(string name, int level, int healthPoints)
+        {
+            this.Name = name;
+            this.Level = level;
+            this.HealthPoints = healthPoints;
+            this.AbilityPoints = DEFAULT_ABILITY_POINTS;
+            this.Faction = DEFAULT_FACTION;
+            this.BodyArmor = DEFAULT_BODY_ARMOR;
+            this.Weapon = DEFAULT_WEAPON;
         }
 
         public void Fireball()

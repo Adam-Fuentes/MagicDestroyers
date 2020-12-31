@@ -1,37 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MagicDestroyers.Equipment.Weapons.Blunt
 {
     public class Hammer
     {
-        private int damage;
+        private const int DEFAULT_DAMAGE_POINTS = 10;
 
-        public int Damage
+        private int damagePoints;
+
+        public int DamagePoints
         {
             get
             {
-                return this.damage;
+                return damagePoints;
             }
             set
             {
                 if (value >= 0)
                 {
-                    this.damage = value;
+                    this.damagePoints = value;
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException(string.Empty, "Damage value should be a positive number");
+                    throw new ArgumentOutOfRangeException(string.Empty, "Damage Points value should be a positive number");
                 }
             }
         }
 
         public Hammer()
+            : this(DEFAULT_DAMAGE_POINTS)
         {
+        }
 
+        public Hammer(int armorPoints)
+        {
+            this.DamagePoints = armorPoints;
         }
 
         public void Stun()

@@ -7,11 +7,21 @@ namespace MagicDestroyers.Characters.Melee
 {
     public class Warrior
     {
+        private const Faction DEFAULT_FACTION = Faction.Melee;
+        private const int DEFAULT_LEVEL = 1;
+        private const int DEFAULT_HEALTH_POINTS = 120;
+        private const int DEFAULT_ABILITY_POINTS = 100;
+        private const string DEFAULT_NAME = "Bob";
+
+        private readonly Chainlink DEFAULT_BODY_ARMOR = new Chainlink();
+        private readonly Axe DEFAULT_WEAPON = new Axe();
+
+        private Faction faction;
+
         private int abilityPoints;
         private int healthPoints;
         private int level;
 
-        private string faction;
         private string name;
 
         private Chainlink bodyArmor;
@@ -25,7 +35,7 @@ namespace MagicDestroyers.Characters.Melee
             }
             set
             {
-                if (value >= 0 && value <= 100)
+                if (value >= 0 && value <= 10)
                 {
                     this.abilityPoints = value;
                 }
@@ -43,13 +53,13 @@ namespace MagicDestroyers.Characters.Melee
             }
             set
             {
-                if (value >= 0 && value <= 120)
+                if (value >= 0 && value <= 100)
                 {
                     this.healthPoints = value;
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 120.");
+                    throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 100.");
                 }
             }
         }
@@ -90,7 +100,7 @@ namespace MagicDestroyers.Characters.Melee
                 }
             }
         }
-        public string Faction
+        public Faction Faction
         {
             get
             {
@@ -98,17 +108,10 @@ namespace MagicDestroyers.Characters.Melee
             }
             set
             {
-                if (value == "Melee" || value == "Spellcaster")
-                {
-                    this.faction = value;
-                }
-                else
-                {
-                    throw new ArgumentException(string.Empty, "The faction should be either Melee or Spellcaster");
-                }
+                this.faction = value;
             }
         }
-
+        
         public Chainlink BodyArmor
         {
             get
@@ -133,12 +136,12 @@ namespace MagicDestroyers.Characters.Melee
         }
 
         public Warrior()
-            : this("Bob", 1)
+            : this(DEFAULT_NAME, DEFAULT_LEVEL)
         {
         }
 
         public Warrior(string name, int level)
-            : this(name, level, 120)
+            : this(name, level, DEFAULT_HEALTH_POINTS)
         {
         }
 
@@ -147,10 +150,10 @@ namespace MagicDestroyers.Characters.Melee
             this.Name = name;
             this.Level = level;
             this.HealthPoints = healthPoints;
-            this.AbilityPoints = 100;
-            this.Faction = "Melee";
-            this.BodyArmor = new Chainlink();
-            this.Weapon = new Axe();
+            this.AbilityPoints = DEFAULT_ABILITY_POINTS;
+            this.Faction = DEFAULT_FACTION;
+            this.BodyArmor = DEFAULT_BODY_ARMOR;
+            this.Weapon = DEFAULT_WEAPON;
         }
 
         public void Strike()

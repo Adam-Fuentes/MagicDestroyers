@@ -1,4 +1,5 @@
-﻿using MagicDestroyers.Equipment.Armors.Leather;
+﻿using MagicDestroyers.Enums;
+using MagicDestroyers.Equipment.Armors.Leather;
 using MagicDestroyers.Equipment.Weapons.Blunt;
 using System;
 
@@ -6,15 +7,37 @@ namespace MagicDestroyers.Characters.Spellcasters
 {
     public class Druid
     {
+        private const Faction DEFAULT_FACTION = Faction.Spellcaster;
+        private const int DEFAULT_LEVEL = 1;
+        private const int DEFAULT_HEALTH_POINTS = 120;
+        private const int DEFAULT_ABILITY_POINTS = 100;
+        private const string DEFAULT_NAME = "Cenarius";
+
+        private readonly LightLeatherVest DEFAULT_BODY_ARMOR = new LightLeatherVest();
+        private readonly Staff DEFAULT_WEAPON = new Staff();
+        
+        private Faction faction;
+
         private int abilityPoints;
         private int healthPoints;
         private int level;
 
-        private string faction;
         private string name;
 
         private LightLeatherVest bodyArmor;
         private Staff weapon;
+
+        public Faction Faction
+        {
+            get
+            {
+                return faction;
+            }
+            set
+            {
+                this.faction = value;
+            }
+        }
 
         public int AbilityPoints
         {
@@ -89,24 +112,6 @@ namespace MagicDestroyers.Characters.Spellcasters
                 }
             }
         }
-        public string Faction
-        {
-            get
-            {
-                return faction;
-            }
-            set
-            {
-                if (value == "Melee" || value == "Spellcaster")
-                {
-                    faction = value;
-                }
-                else
-                {
-                    throw new ArgumentException(string.Empty, "The faction should be either Melee or Spellcaster");
-                }
-            }
-        }
 
         public LightLeatherVest BodyArmor
         {
@@ -132,8 +137,24 @@ namespace MagicDestroyers.Characters.Spellcasters
         }
 
         public Druid()
+            : this(DEFAULT_NAME, DEFAULT_LEVEL)
         {
+        }
 
+        public Druid(string name, int level)
+            : this(name, level, DEFAULT_HEALTH_POINTS)
+        {
+        }
+
+        public Druid(string name, int level, int healthPoints)
+        {
+            this.Name = name;
+            this.Level = level;
+            this.HealthPoints = healthPoints;
+            this.AbilityPoints = DEFAULT_ABILITY_POINTS;
+            this.Faction = DEFAULT_FACTION;
+            this.BodyArmor = DEFAULT_BODY_ARMOR;
+            this.Weapon = DEFAULT_WEAPON;
         }
 
         public void Moonfire()

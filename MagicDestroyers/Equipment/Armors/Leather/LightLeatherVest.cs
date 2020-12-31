@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MagicDestroyers.Equipment.Armors.Leather
 {
     public class LightLeatherVest
     {
+        private const int DEFAULT_ARMOR_POINTS = 10;
+
         private int armorPoints;
 
         public int ArmorPoints
         {
             get
             {
-                return this.armorPoints;
+                return armorPoints;
             }
             set
             {
@@ -30,8 +28,13 @@ namespace MagicDestroyers.Equipment.Armors.Leather
         }
 
         public LightLeatherVest()
+            : this(DEFAULT_ARMOR_POINTS)
         {
+        }
 
+        public LightLeatherVest(int armorPoints)
+        {
+            this.ArmorPoints = armorPoints;
         }
     }
 }
