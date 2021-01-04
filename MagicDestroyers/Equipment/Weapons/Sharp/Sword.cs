@@ -20,5 +20,10 @@ namespace MagicDestroyers.Equipment.Weapons.Sharp
         {
             throw new NotImplementedException();
         }
+
+        public override void Buff()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

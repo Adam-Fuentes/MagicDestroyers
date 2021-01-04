@@ -1,0 +1,2 @@
+G:\CSharp OOP\Visual Studio Projects\Project\MagicDestroyers - Part 5 - Copy\MagicDestroyers\obj\Debug\MagicDestroyers.csprojResolveAssemblyReference.cache
+G:\CSharp OOP\Visual Studio Projects\Project\MagicDestroyers - Part 5 - Copy\MagicDestroyers\obj\Debug\MagicDestroyers.csproj.CoreCompileInputs.cache

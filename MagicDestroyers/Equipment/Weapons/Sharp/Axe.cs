@@ -16,6 +16,11 @@ namespace MagicDestroyers.Equipment.Weapons.Sharp
             this.DamagePoints = armorPoints;
         }
 
+        public override void Buff()
+        {
+            throw new NotImplementedException();
+        }
+
         public void HackNSlash()
         {
             throw new NotImplementedException();

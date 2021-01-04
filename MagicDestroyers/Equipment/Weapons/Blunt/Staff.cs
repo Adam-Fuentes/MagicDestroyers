@@ -16,6 +16,11 @@ namespace MagicDestroyers.Equipment.Weapons.Blunt
             this.DamagePoints = armorPoints;
         }
 
+        public override void Buff()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Empower()
         {
             throw new NotImplementedException();

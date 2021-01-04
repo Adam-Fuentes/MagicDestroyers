@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MagicDestroyers.Equipment.Armors.Leather
+namespace MagicDestroyers.Equipment.Interfaces
 {
-    public abstract class Leather : Armor
+    public interface IBuff
     {
-
+        void Buff();
     }
 }
